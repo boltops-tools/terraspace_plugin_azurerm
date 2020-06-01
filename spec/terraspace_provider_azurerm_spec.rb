@@ -1,9 +1,5 @@
-RSpec.describe TerraspaceProviderAzurerm do
+RSpec.describe TerraspacePluginAzurerm do
   it "has a version number" do
-    expect(TerraspaceProviderAzurerm::VERSION).not_to be nil
-  end
-
-  it "does something useful" do
-    expect(false).to eq(true)
+    expect(TerraspacePluginAzurerm::VERSION).not_to be nil
   end
 end

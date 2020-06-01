@@ -1,4 +1,4 @@
-# Terraspace Azurerm Provider
+# Terraspace Azurerm Plugin
 
 Azurerm Cloud support for terraspace.
 
@@ -7,9 +7,9 @@ Azurerm Cloud support for terraspace.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'terraspace_provider_azurerm'
+gem 'terraspace_plugin_azurerm'
 ```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/boltops-tools/terraspace_provider_azurerm.
+Bug reports and pull requests are welcome on GitHub at https://github.com/boltops-tools/terraspace_plugin_azurerm.

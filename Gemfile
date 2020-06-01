@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in terraspace_provider_azurerm.gemspec
+# Specify your gem's dependencies in terraspace_plugin_azurerm.gemspec
 gemspec
 
 gem "rake", "~> 12.0"

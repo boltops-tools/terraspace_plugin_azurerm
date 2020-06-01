@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "terraspace_provider_azurerm"
+require "terraspace_plugin_azurerm"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
