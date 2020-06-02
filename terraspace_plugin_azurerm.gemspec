@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Tung Nguyen"]
   spec.email         = ["tung@boltops.com"]
 
-  spec.summary       = "Terraspace Azurerm Plugin"
+  spec.summary       = "Terraspace Azurerm Cloud Plugin"
   spec.homepage      = "https://github.com/boltops-tools/terraspace_plugin_azurerm"
   spec.license       = "Apache2.0"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
@@ -21,4 +21,10 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+
+  # spec.add_dependency "azure_info"
+  spec.add_dependency "azure_mgmt_resources"
+  spec.add_dependency "azure_mgmt_storage"
+  spec.add_dependency "memoist"
+  spec.add_dependency "zeitwerk"
 end
