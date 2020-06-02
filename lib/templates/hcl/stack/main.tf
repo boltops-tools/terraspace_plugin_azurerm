@@ -8,8 +8,9 @@ resource "azurerm_resource_group" "this" {
 }
 
 module "storage_account" {
-  source               = "../../modules/example"
-  name                 =  "sa${random_pet.this.id}"
-  resource_group_name  = azurerm_resource_group.this.name
-  location             = azurerm_resource_group.this.location
+  source                    = "../../modules/example"
+  name                      =  "sa${random_pet.this.id}"
+  resource_group_name       = azurerm_resource_group.this.name
+  location                  = azurerm_resource_group.this.location
+  enable_https_traffic_only = var.enable_https_traffic_only
 }
