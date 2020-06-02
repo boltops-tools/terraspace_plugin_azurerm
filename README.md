@@ -1,6 +1,6 @@
-# Terraspace azurerm Cloud Plugin
+# Terraspace Azurerm Plugin
 
-azurerm Cloud support for [terraspace](https://terraspace.cloud/).
+Azurerm support for [terraspace](https://terraspace.cloud/).
 
 ## Installation
 
