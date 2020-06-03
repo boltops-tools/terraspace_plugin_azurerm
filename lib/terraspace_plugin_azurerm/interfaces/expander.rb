@@ -27,10 +27,6 @@ module TerraspacePluginAzurerm::Interfaces
     def subscription_hash
       Digest::SHA1.hexdigest(subscription)[0..3]
     end
-
-    # NOTE: be careful to not change this! or else state path will change
-    def namespace_hash
-      Digest::SHA1.hexdigest(subscription)[0..3]
-    end
+    alias_method :namespace_hash, :subscription_hash
   end
 end
