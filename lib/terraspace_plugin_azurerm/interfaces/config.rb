@@ -3,6 +3,8 @@ module TerraspacePluginAzurerm::Interfaces
     include Terraspace::Plugin::Config::Interface
     include Singleton # Config class must be a Singleton with the class .instance method
 
+    # interface method
+    # load_project_config: config/plugins/azurerm.rb
     def provider
       "azurerm"
     end
