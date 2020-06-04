@@ -17,5 +17,9 @@ class TerraspacePluginAzurerm::Interfaces::Backend
       AzureInfo
     end
     memoize :azure_info
+
+    def logger
+      Terraspace.logger
+    end
   end
 end

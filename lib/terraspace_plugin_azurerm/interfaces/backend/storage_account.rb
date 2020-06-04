@@ -5,7 +5,7 @@ class TerraspacePluginAzurerm::Interfaces::Backend
 
     def create
       if exist?
-        puts "Storage Account #{@storage_account_name} already exists" if ENV['TS_LOUD']
+        logger.debug "Storage Account #{@storage_account_name} already exists"
       else
         create_storage_account
       end
@@ -24,8 +24,8 @@ class TerraspacePluginAzurerm::Interfaces::Backend
 
       case result.reason
       when "AccountNameInvalid"
-        puts "ERROR: Failed to create storage account, reason: #{result.reason}".color(:red)
-        puts "Provided storage_account_name: #{@storage_account_name}"
+        logger.error "ERROR: Failed to create storage account, reason: #{result.reason}".color(:red)
+        logger.error "Provided storage_account_name: #{@storage_account_name}"
         exit 1
       else
         false
@@ -33,7 +33,7 @@ class TerraspacePluginAzurerm::Interfaces::Backend
     end
 
     def create_storage_account
-      puts "Creating Storage Account #{@storage_account_name}..."
+      logger.info "Creating Storage Account #{@storage_account_name}..."
       storage_accounts.create(@resource_group_name, @storage_account_name, storage_account_params)
     end
 

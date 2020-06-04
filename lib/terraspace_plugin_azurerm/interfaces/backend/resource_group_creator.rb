@@ -5,7 +5,7 @@ class TerraspacePluginAzurerm::Interfaces::Backend
 
     def create
       if exist?
-        puts "Resource Group #{@resource_group_name} already exists" if ENV['TS_LOUD']
+        logger.debug "Resource Group #{@resource_group_name} already exists"
       else
         create_resource_group
       end
@@ -16,7 +16,7 @@ class TerraspacePluginAzurerm::Interfaces::Backend
     end
 
     def create_resource_group
-      puts "Creating Resource Group #{@resource_group_name}..."
+      logger.info "Creating Resource Group #{@resource_group_name}..."
       resource_group = ResourceGroup.new
       resource_group.name = @resource_group_name
       resource_group.location = config.location || AzureInfo.location

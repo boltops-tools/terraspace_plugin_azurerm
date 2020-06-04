@@ -5,7 +5,7 @@ class TerraspacePluginAzurerm::Interfaces::Backend
 
     def create
       if exist?
-        puts "Storage Container #{@container_name} already exists" if ENV['TS_LOUD']
+        logger.debug "Storage Container #{@container_name} already exists"
       else
         create_storage_container
       end
@@ -21,7 +21,7 @@ class TerraspacePluginAzurerm::Interfaces::Backend
     end
 
     def create_storage_container
-      puts "Creating Storage Container #{@container_name}..."
+      logger.info "Creating Storage Container #{@container_name}..."
       blob_container = BlobContainer.new
       blob_container.name = @container_name
       blob_containers.create(@resource_group_name, @storage_account_name, @container_name, blob_container)
