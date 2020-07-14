@@ -69,12 +69,6 @@ module TerraspacePluginAzurerm::Interfaces
       end
     end
 
-    # override default since azure statefiles do not have .tfstate extension
-    # interface method
-    def statefile_expr
-      "#{@dest_folder}**/*"
-    end
-
   private
     def blob_client
       # Note per docs: https://github.com/azure/azure-storage-ruby/tree/master/blob#via-environment-variables
