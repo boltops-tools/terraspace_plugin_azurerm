@@ -13,8 +13,6 @@ module TerraspacePluginAzurerm::Interfaces
 
     # interface method
     def download
-      container_name = @info['container_name']
-
       marker = nil
       loop do
         blobs = list_blobs(container_name, marker: marker)
@@ -27,6 +25,30 @@ module TerraspacePluginAzurerm::Interfaces
         marker = blobs.continuation_token
         break unless marker && !marker.empty?
       end
+    end
+
+    # interface method
+    def delete_empty_statefile(key)
+      delete_blob(key)
+    end
+
+    def delete_blob(key)
+      blob_client.delete_blob(container_name, key)
+    rescue Azure::Core::Http::HTTPError => e
+      case e.message
+      when /BlobNotFound/
+        logger.info "WARN: #{e.class}: #{e.message}"
+        logger.info "Blob item does not exist: #{key}"
+      when /ContainerNotFound/
+        logger.info "WARN: #{e.class}: #{e.message}"
+        logger.info "Container not found: #{container_name}"
+      else
+        raise
+      end
+    end
+
+    def container_name
+      @info['container_name']
     end
 
     # Friendly error handling for user
