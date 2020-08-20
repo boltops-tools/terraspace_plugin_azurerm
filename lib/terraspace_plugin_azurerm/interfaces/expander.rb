@@ -16,6 +16,7 @@ module TerraspacePluginAzurerm::Interfaces
 
     delegate :subscription_id, :subscription, :tenant_id, :tenant_id, :group, :location, to: :azure_info
     alias_method :namespace, :subscription
+    alias_method :region, :location
 
     def azure_info
       AzureInfo

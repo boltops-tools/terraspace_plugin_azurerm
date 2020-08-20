@@ -1,6 +1,7 @@
 module TerraspacePluginAzurerm::Interfaces
   class Layer
     extend Memoist
+    include Terraspace::Plugin::Layer::Interface
 
     # interface method
     def namespace
@@ -10,11 +11,6 @@ module TerraspacePluginAzurerm::Interfaces
     # interface method
     def region
       AzureInfo.location
-    end
-
-    # interface method
-    def provider
-      "azurerm"
     end
   end
 end
