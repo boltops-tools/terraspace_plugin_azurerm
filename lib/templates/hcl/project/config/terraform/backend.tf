@@ -1,5 +1,5 @@
 # SUBSCRIPTION_HASH is a short 4-char consistent hash of the longer subscription id.
-# This is useful because azure storage accounts not allowed special characters and can only be 24 chars long.
+# This is useful because azure storage account names are not allowed special characters and are limited to 24 chars.
 terraform {
   backend "azurerm" {
     resource_group_name  = "<%= expansion('terraform-resources-:LOCATION') %>"

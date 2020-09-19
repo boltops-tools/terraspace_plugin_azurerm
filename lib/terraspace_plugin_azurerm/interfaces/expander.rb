@@ -23,7 +23,7 @@ module TerraspacePluginAzurerm::Interfaces
     end
 
     # subscription_hash is a short 4-char consistent hash of the longer subscription id.
-    # This is useful because azure storage accounts not allowed special characters and can only be 24 chars long.
+    # This is useful because azure storage account names are not allowed special characters and are limited to 24 chars.
     # NOTE: be careful to not change this! or else state path will change
     def subscription_hash
       Digest::SHA1.hexdigest(subscription)[0..3]
