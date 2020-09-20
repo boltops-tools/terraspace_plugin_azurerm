@@ -53,7 +53,7 @@ module TerraspacePluginAzurerm::Interfaces
 
     # Friendly error handling for user
     def list_blobs(container_name, marker:)
-      blob_client.list_blobs(container_name, marker: marker)
+      blob_client.list_blobs(container_name, marker: marker, prefix: @folder)
     rescue Azure::Core::Http::HTTPError => e
       if e.message.include?("AuthenticationFailed")
         logger.error "e.class #{e.class}: #{e.message}"
