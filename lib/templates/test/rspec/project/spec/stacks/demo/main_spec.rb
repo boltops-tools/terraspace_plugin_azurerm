@@ -8,6 +8,7 @@ describe "main" do
       stacks:  "app/stacks",           # include all stacks in this folder
       # override demo stack tfvars for testing
       # copied over to test harness' app/stacks/demo/tfvars/test.tfvars
+      # need for azure
       tfvars:  {demo: "spec/fixtures/tfvars/demo.tfvars"},
       config: "spec/fixtures/config",
     )
@@ -18,9 +19,6 @@ describe "main" do
   end
 
   it "successful deploy" do
-    # Replace with your actual test
-    expect(true).to be true
-    # Example
     storage_account_id = terraspace.output("demo", "storage_account_id")
     expect(storage_account_id).to include("sa") # starts with sa
   end
