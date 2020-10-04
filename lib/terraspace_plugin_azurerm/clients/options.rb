@@ -3,21 +3,49 @@ module TerraspacePluginAzurerm::Clients
     extend Memoist
 
     def client_options
-      client_id       = ENV['AZURE_CLIENT_ID']
-      client_secret   = ENV['AZURE_CLIENT_SECRET']
-      subscription_id = ENV['AZURE_SUBSCRIPTION_ID'] || AzureInfo.subscription_id
-      tenant_id       = ENV['AZURE_TENANT_ID'] || AzureInfo.tenant_id
+      o = base_client_options
+      o[:credentials] = credentials
+      o
+    end
 
-      provider = MsRestAzure::ApplicationTokenProvider.new(tenant_id, client_id, client_secret)
-      credentials = MsRest::TokenCredentials.new(provider)
+    def credentials
+      o = base_client_options
+      provider = MsRestAzure::ApplicationTokenProvider.new(o[:tenant_id], o[:client_id], o[:client_secret])
+      MsRest::TokenCredentials.new(provider)
+    end
 
-      {
+    def base_client_options
+      # AZURE_* is used by ruby generally.
+      # ARM_* is used by Terraform azurerm provider: https://www.terraform.io/docs/providers/azurerm/index.html
+      # Favor ARM_ because this plugin is designed for Terraspace.
+      client_id       = ENV['ARM_CLIENT_ID'] || ENV['AZURE_CLIENT_ID']
+      client_secret   = ENV['ARM_CLIENT_SECRET'] || ENV['AZURE_CLIENT_SECRET']
+      subscription_id = ENV['ARM_SUBSCRIPTION_ID'] || ENV['AZURE_SUBSCRIPTION_ID'] || AzureInfo.subscription_id
+      tenant_id       = ENV['ARM_TENANT_ID'] || ENV['AZURE_TENANT_ID'] || AzureInfo.tenant_id
+
+      o = {
         tenant_id: tenant_id,
         client_id: client_id,
         client_secret: client_secret,
         subscription_id: subscription_id,
-        credentials: credentials
       }
+      validate_base_options!(o)
+      o
+    end
+    memoize :base_client_options
+
+    def validate_base_options!(options)
+      vars = []
+      options.each do |k,v|
+        vars << "ARM_#{k}".upcase if v.nil?
+      end
+      return if vars.empty?
+
+      logger.error "ERROR: Required Azure env variables missing. Please set these env variables:".color(:red)
+      vars.each do |var|
+        logger.error "    #{var}"
+      end
+      exit 1
     end
   end
 end

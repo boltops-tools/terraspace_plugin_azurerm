@@ -27,7 +27,7 @@ end
 
 By default, this plugin will automatically create the:
 
-* [resource group](Pluginazurerm)
+* [resource group](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal)
 * [storage account](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal)
 * [storage container](https://docs.microsoft.com/en-us/cli/azure/storage/container?view=azure-cli-latest#az-storage-container-create)
 
@@ -35,15 +35,17 @@ The settings generally only apply if the resource does not yet exist yet and is 
 
 ## Environment Variables
 
-To create the Azure resources like [resource group](Pluginazurerm), [storage account](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal), and [storage container](https://docs.microsoft.com/en-us/cli/azure/storage/container?view=azure-cli-latest#az-storage-container-create) these environment variables are required:
+To create the Azure resources like [resource group](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal), [storage account](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal), and [storage container](https://docs.microsoft.com/en-us/cli/azure/storage/container?view=azure-cli-latest#az-storage-container-create) these environment variables are required:
 
-    AZURE_CLIENT_ID
-    AZURE_CLIENT_SECRET
+    ARM_CLIENT_ID
+    ARM_CLIENT_SECRET
 
-There's other env variables can also be set, but are generally inferred.
+Other env variables can be optionally set:
 
-    AZURE_TENANT_ID
-    AZURE_SUBSCRIPTION_ID
+    ARM_TENANT_ID
+    ARM_SUBSCRIPTION_ID
+
+When not set, their values are inferred from the [az cli](https://docs.microsoft.com/en-us/cli/azure/) settings. For those interested, this is done with the [boltops-tools/azure_info](https://github.com/boltops-tools/azure_info) library.
 
 ## Contributing
 
