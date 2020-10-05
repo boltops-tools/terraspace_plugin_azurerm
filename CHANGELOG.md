@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project *loosely tries* to adhere to [Semantic Versioning](http://semver.org/).
 
+## [0.2.3]
+- #4 validate env vars and use older storage client
+
 ## [0.2.2]
 - #3 fix test template
 
