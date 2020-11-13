@@ -23,12 +23,22 @@ module TerraspacePluginAzurerm
     Interfaces::Config.instance.config
   end
 
+  @@logger = nil
+  def logger
+    @@logger ||= Terraspace.logger
+  end
+
+  def logger=(v)
+    @@logger = v
+  end
+
   extend self
 end
 
 Terraspace::Plugin.register("azurerm",
   backend: "azurerm",
   config_class: TerraspacePluginAzurerm::Interfaces::Config,
+  helper_class: TerraspacePluginAzurerm::Interfaces::Helper,
   layer_class: TerraspacePluginAzurerm::Interfaces::Layer,
   root: File.dirname(__dir__),
 )
