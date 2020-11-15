@@ -1,7 +1,6 @@
 class TerraspacePluginAzurerm::Interfaces::Backend
   class StorageContainer < Base
     include TerraspacePluginAzurerm::Clients::Storage
-    extend Memoist
 
     def create
       if exist?
