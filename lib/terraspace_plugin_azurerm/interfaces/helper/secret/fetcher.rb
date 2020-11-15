@@ -10,9 +10,9 @@ class TerraspacePluginAzurerm::Interfaces::Helper::Secret
 
     def initialize
       o = base_client_options
-      @client_id       = o[:client_id]
-      @client_secret   = o[:client_secret]
-      @tenant_id       = o[:tenant_id]
+      @client_id     = o[:client_id]
+      @client_secret = o[:client_secret]
+      @tenant_id     = o[:tenant_id]
     end
 
     def fetch(name, opts={})
@@ -27,6 +27,8 @@ class TerraspacePluginAzurerm::Interfaces::Helper::Secret
 
       version = "/#{version}" if version
       vault_subdomain = vault.downcase
+      # Using Azure REST API since the old gem doesnt support secrets https://github.com/Azure/azure-sdk-for-ruby
+      # https://docs.microsoft.com/en-us/rest/api/keyvault/getsecret/getsecret
       url = "https://#{vault_subdomain}.vault.azure.net/secrets/#{name}#{version}?api-version=7.1"
       uri = URI(url)
       req = Net::HTTP::Get.new(uri)
