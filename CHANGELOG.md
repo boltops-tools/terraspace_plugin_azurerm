@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project *loosely tries* to adhere to [Semantic Versioning](http://semver.org/).
 
+## [0.3.0] - 2020-11-15
+- [#5](https://github.com/boltops-tools/terraspace_plugin_azurerm/pull/5) helper and secrets support
+- azure_secret helper
+
 ## [0.2.3]
 - #4 validate env vars and use older storage client
 
