@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "azure-storage-blob"
-  spec.add_dependency "azure_info"
+  spec.add_dependency "azure_info", "~> 0.1.2"
   spec.add_dependency "azure_mgmt_resources"
   spec.add_dependency "azure_mgmt_storage"
   spec.add_dependency "memoist"
