@@ -42,7 +42,7 @@ class TerraspacePluginAzurerm::Interfaces::Backend
       params.location = config.location || azure_info.location # IE: eastus
       params.sku = sku
       params.kind = Kind::StorageV2
-      params.tags = config.tags || {}
+      params.tags = config.tags
       params
     end
 
