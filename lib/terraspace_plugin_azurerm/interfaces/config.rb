@@ -18,6 +18,7 @@ module TerraspacePluginAzurerm::Interfaces
       c.secrets = ActiveSupport::OrderedOptions.new
       c.secrets.vault = nil
       c.storage_account = ActiveSupport::OrderedOptions.new
+      c.storage_account.tags = {}
       c.storage_account.sku = ActiveSupport::OrderedOptions.new
       c.storage_account.sku.name = "Standard_LRS"
       c.storage_account.sku.tier = "Standard"
