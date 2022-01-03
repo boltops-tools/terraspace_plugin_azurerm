@@ -6,8 +6,8 @@ module TerraspacePluginAzurerm::Interfaces::Helper
     include TerraspacePluginAzurerm::Logging
     include TerraspacePluginAzurerm::Clients::Options
 
-    def initialize(options={})
-      @options = options
+    def initialize(mod, options={})
+      @mod, @options = mod, options
       @base64 = options[:base64]
     end
 
@@ -19,7 +19,7 @@ module TerraspacePluginAzurerm::Interfaces::Helper
     end
 
     def fetcher
-      Fetcher.new
+      Fetcher.new(@mod, @options)
     end
     memoize :fetcher
   end
