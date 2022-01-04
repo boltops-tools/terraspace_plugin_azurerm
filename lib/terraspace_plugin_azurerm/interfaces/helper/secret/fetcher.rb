@@ -4,11 +4,14 @@ class TerraspacePluginAzurerm::Interfaces::Helper::Secret
   class Fetcher
     class Error < StandardError; end
     class VaultNotFoundError < Error; end
+    class VaultNotConfiguredError < Error; end
 
     include TerraspacePluginAzurerm::Logging
     include TerraspacePluginAzurerm::Clients::Options
+    extend Memoist
 
-    def initialize
+    def initialize(mod, options={})
+      @mod, @options = mod, options
       o = base_client_options
       @client_id     = o[:client_id]
       @client_secret = o[:client_secret]
@@ -20,16 +23,21 @@ class TerraspacePluginAzurerm::Interfaces::Helper::Secret
       get_secret(name, opts)
     end
 
-    def get_secret(name, vault: nil, version: nil)
+    def get_secret(name, options={})
+      vault = options[:vault]
+      version = options[:version]
       unless token
         return "ERROR: Unable to authorize and get the temporary token. Double check your ARM_ env variables."
       end
 
       version = "/#{version}" if version
+      check_vault_configured!(vault)
       vault_subdomain = vault.downcase
       # Using Azure REST API since the old gem doesnt support secrets https://github.com/Azure/azure-sdk-for-ruby
       # https://docs.microsoft.com/en-us/rest/api/keyvault/getsecret/getsecret
+      name = expansion(name) if expand?
       url = "https://#{vault_subdomain}.vault.azure.net/secrets/#{name}#{version}?api-version=7.1"
+      logger.debug "Azure vault url #{url}"
       uri = URI(url)
       req = Net::HTTP::Get.new(uri)
       req["Authorization"] = token
@@ -53,6 +61,23 @@ class TerraspacePluginAzurerm::Interfaces::Helper::Secret
         logger.info "WARN: #{message}".color(:yellow)
         message
       end
+    end
+
+    def check_vault_configured!(vault)
+      return if vault
+      logger.error "ERROR: Vault has not been configured or vault option not passed in the azure_secret helper method.".color(:red)
+      logger.error <<~EOL
+        Please configure the Azure KeyVault you want to use.  Example:
+
+        config/plugins/azurerm.rb
+
+            TerraspacePluginAzurerm.configure do |config|
+              config.secrets.vault = "REPLACE_WITH_YOUR_VAULT_NAME"
+            end
+
+        Docs: https://terraspace.cloud/docs/helpers/azure/secrets/
+      EOL
+      raise VaultNotConfiguredError.new
     end
 
     def send_request(uri, req)
@@ -107,6 +132,17 @@ class TerraspacePluginAzurerm::Interfaces::Helper::Secret
         # ArgumentError: header field value cannot include CR/LF
         @@token = false
       end
+    end
+
+  private
+    delegate :expansion, to: :expander
+    def expander
+      TerraspacePluginAzurerm::Interfaces::Expander.new(@mod)
+    end
+    memoize :expander
+
+    def expand?
+      !(@options[:expansion] == false || @options[:expand] == false)
     end
   end
 end
