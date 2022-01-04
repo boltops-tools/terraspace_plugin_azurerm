@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project *loosely tries* to adhere to [Semantic Versioning](http://semver.org/).
 
+## [0.3.3] - 2022-01-04
+- [#10](https://github.com/boltops-tools/terraspace_plugin_azurerm/pull/10) azure_secret support expansion automatically
+
 ## [0.3.2] - 2021-11-29
 - [#9](https://github.com/boltops-tools/terraspace_plugin_azurerm/pull/9) change starter resource_group_name to have env
 
