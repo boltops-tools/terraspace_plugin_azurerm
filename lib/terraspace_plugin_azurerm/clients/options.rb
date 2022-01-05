@@ -3,18 +3,6 @@ module TerraspacePluginAzurerm::Clients
     extend Memoist
 
     def client_options
-      o = base_client_options
-      o[:credentials] = credentials
-      o
-    end
-
-    def credentials
-      o = base_client_options
-      provider = MsRestAzure::ApplicationTokenProvider.new(o[:tenant_id], o[:client_id], o[:client_secret])
-      MsRest::TokenCredentials.new(provider)
-    end
-
-    def base_client_options
       # AZURE_* is used by ruby generally.
       # ARM_* is used by Terraform azurerm provider: https://www.terraform.io/docs/providers/azurerm/index.html
       # Favor ARM_ because this plugin is designed for Terraspace.
@@ -32,7 +20,7 @@ module TerraspacePluginAzurerm::Clients
       validate_base_options!(o)
       o
     end
-    memoize :base_client_options
+    memoize :client_options
 
     def validate_base_options!(options)
       vars = []

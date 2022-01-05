@@ -23,7 +23,7 @@ TerraspacePluginAzurerm.configure do |config|
   config.storage_account.sku.name = "Standard_LRS"
   config.storage_account.sku.tier = "Standard"
 
-  config.tags = {Terraspace: true, Env: "dev"}
+  config.tags = {env: Terraspace.env, terraspace: true}
 end
 ```
 
