@@ -20,6 +20,7 @@ class TerraspacePluginAzurerm::Interfaces::Backend
       resource_group = ResourceGroup.new
       resource_group.name = @resource_group_name
       resource_group.location = config.location || AzureInfo.location
+      resource_group.tags = config.tags
       resource_groups.create_or_update(@resource_group_name, resource_group)
     end
 
