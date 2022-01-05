@@ -6,12 +6,10 @@ module TerraspacePluginAzurerm::Clients
     extend Memoist
 
     # Include SDK modules to ease access to Storage classes.
-    include Azure::Storage::Mgmt::V2019_06_01
-    include Azure::Storage::Mgmt::V2019_06_01::Models
+    include Azure::Storage::Profiles::Latest::Mgmt
+    include Azure::Storage::Profiles::Latest::Mgmt::Models
 
-    def storage_accounts
-      mgmt.storage_accounts
-    end
+    delegate :storage_accounts, :blob_services, :blob_containers, to: :mgmt
 
     def blob_containers
       BlobContainers.new(mgmt)
@@ -19,7 +17,7 @@ module TerraspacePluginAzurerm::Clients
     memoize :blob_containers
 
     def mgmt
-      client = StorageManagementClient.new(credentials)
+      client = Client.new(client_options)
       client.subscription_id = client_options[:subscription_id]
       client
     end
