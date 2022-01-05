@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 This project *loosely tries* to adhere to [Semantic Versioning](http://semver.org/).
 
+## [0.4.0] - 2022-01-05
+- [#11](https://github.com/boltops-tools/terraspace_plugin_azurerm/pull/11) fix tags config in README
+- [#13](https://github.com/boltops-tools/terraspace_plugin_azurerm/pull/13) data management and security features
+- [#8](https://github.com/boltops-tools/terraspace_plugin_azurerm/pull/8) Add config.tags
+
 ## [0.3.3] - 2022-01-04
 - [#10](https://github.com/boltops-tools/terraspace_plugin_azurerm/pull/10) azure_secret support expansion automatically
 
