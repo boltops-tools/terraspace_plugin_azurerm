@@ -1,3 +1,4 @@
+require "armrest"
 require "azure_info"
 require "memoist"
 require "terraspace" # for interface

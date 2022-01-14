@@ -1,33 +1,32 @@
 class TerraspacePluginAzurerm::Interfaces::Backend
   # Named ResourceGroupCreator to avoid collision with Azure ResourceGroup model
   class ResourceGroupCreator < Base
-    include TerraspacePluginAzurerm::Clients::Resources
-
     def create
       if exist?
         logger.debug "Resource Group #{@resource_group_name} already exists"
+        create_or_update_resource_group if config.resource_group.update_existing
       else
-        create_resource_group
+        create_or_update_resource_group
       end
     end
 
     def exist?
-      resource_groups.check_existence(@resource_group_name)
+      resource_group.check_existence(name: @resource_group_name)
     end
 
-    def create_resource_group
+    def create_or_update_resource_group
       logger.info "Creating Resource Group #{@resource_group_name}..."
-      resource_group = ResourceGroup.new
-      resource_group.name = @resource_group_name
-      resource_group.location = config.location || AzureInfo.location
-      resource_group.tags = config.tags
-      resource_groups.create_or_update(@resource_group_name, resource_group)
+      resource_group.create_or_update(
+        name: @resource_group_name,
+        location: config.location || AzureInfo.location,
+        tags: config.tags,
+      )
     end
 
   private
-    def resource_groups
-      ResourceGroups.new(mgmt)
+    def resource_group
+      Armrest::Services::ResourceGroup.new
     end
-    memoize :resource_groups
+    memoize :resource_group
   end
 end

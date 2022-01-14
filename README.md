@@ -1,5 +1,9 @@
 # Terraspace Azurerm Plugin
 
+[![BoltOps Badge](https://img.boltops.com/boltops/badges/boltops-badge.png)](https://www.boltops.com)
+
+[![Gem Version](https://badge.fury.io/rb/terraspace_plugin_azurerm.svg)](https://badge.fury.io/rb/terraspace_plugin_azurerm)
+
 Azurerm support for [terraspace](https://terraspace.cloud/).
 
 ## Installation

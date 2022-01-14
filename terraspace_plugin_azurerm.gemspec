@@ -22,10 +22,8 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "azure-storage-blob"
-  spec.add_dependency "azure_info", "~> 0.1.2"
-  spec.add_dependency "azure_mgmt_resources"
-  spec.add_dependency "azure_mgmt_storage"
+  spec.add_dependency "armrest"
+  spec.add_dependency "azure_info"
   spec.add_dependency "memoist"
   spec.add_dependency "zeitwerk"
 end

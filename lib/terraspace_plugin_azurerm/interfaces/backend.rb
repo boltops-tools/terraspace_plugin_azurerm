@@ -8,7 +8,7 @@ module TerraspacePluginAzurerm::Interfaces
 
       ResourceGroupCreator.new(@info).create
       StorageAccount.new(@info).create
-      StorageContainer.new(@info).create
+      BlobContainer.new(@info).create
     end
   end
 end
