@@ -4,7 +4,6 @@ module TerraspacePluginAzurerm::Interfaces::Helper
   class Secret
     extend Memoist
     include TerraspacePluginAzurerm::Logging
-    include TerraspacePluginAzurerm::Clients::Options
 
     def initialize(mod, options={})
       @mod, @options = mod, options

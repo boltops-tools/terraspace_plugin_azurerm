@@ -3,7 +3,6 @@ require 'azure/storage/blob'
 module TerraspacePluginAzurerm::Interfaces
   class Summary
     include Terraspace::Plugin::Summary::Interface
-    include TerraspacePluginAzurerm::Clients::Storage # for mgmt storage_accounts to get keys only, the azure/storage/blob gem is used to get the objects
     extend Memoist
 
     # interface method

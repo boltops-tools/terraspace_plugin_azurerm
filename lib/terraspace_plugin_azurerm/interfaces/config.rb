@@ -20,6 +20,9 @@ module TerraspacePluginAzurerm::Interfaces
       c.secrets = ActiveSupport::OrderedOptions.new
       c.secrets.vault = nil
 
+      c.resource_group = ActiveSupport::OrderedOptions.new
+      c.resource_group.update_existing = false
+
       c.storage_account = ActiveSupport::OrderedOptions.new
       c.storage_account.update_existing = false
       c.storage_account.sku = ActiveSupport::OrderedOptions.new
