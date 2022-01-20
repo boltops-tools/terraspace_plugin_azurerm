@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project *loosely tries* to adhere to [Semantic Versioning](http://semver.org/).
 
+## [0.5.0] - 2022-01-20
+- [#14](https://github.com/boltops-tools/terraspace_plugin_azurerm/pull/14) use armrest gem
+
 ## [0.4.0] - 2022-01-05
 - [#11](https://github.com/boltops-tools/terraspace_plugin_azurerm/pull/11) fix tags config in README
 - [#13](https://github.com/boltops-tools/terraspace_plugin_azurerm/pull/13) data management and security features
