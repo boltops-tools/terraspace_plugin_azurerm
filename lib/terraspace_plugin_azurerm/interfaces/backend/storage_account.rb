@@ -43,7 +43,7 @@ class TerraspacePluginAzurerm::Interfaces::Backend
           tier: config.storage_account.sku.tier,
         },
         properties: {
-          allow_blob_public_access: config.storage_account.allow_blob_public_access,
+          allowBlobPublicAccess: config.storage_account.allow_blob_public_access,
         },
         kind: "StorageV2",
         tags: config.tags,
@@ -67,9 +67,9 @@ class TerraspacePluginAzurerm::Interfaces::Backend
       }
       # final props
       {
-        container_delete_retention_policy: container_delete_retention_policy,
-        delete_retention_policy: delete_retention_policy,
-        is_versioning_enabled: sa.is_versioning_enabled,
+        containerDeleteRetentionPolicy: container_delete_retention_policy,
+        deleteRetentionPolicy: delete_retention_policy,
+        isVersioningEnabled: sa.is_versioning_enabled,
       }
     end
 
