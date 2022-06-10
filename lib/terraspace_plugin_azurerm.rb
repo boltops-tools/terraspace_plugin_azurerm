@@ -41,5 +41,6 @@ Terraspace::Plugin.register("azurerm",
   config_class: TerraspacePluginAzurerm::Interfaces::Config,
   helper_class: TerraspacePluginAzurerm::Interfaces::Helper,
   layer_class: TerraspacePluginAzurerm::Interfaces::Layer,
+  ci_class: TerraspacePluginAzurerm::Interfaces::Ci,
   root: File.dirname(__dir__),
 )
