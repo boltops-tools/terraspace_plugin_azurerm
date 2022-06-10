@@ -29,5 +29,21 @@ module TerraspacePluginAzurerm::Interfaces
       Digest::SHA1.hexdigest(subscription)[0..3]
     end
     alias_method :namespace_hash, :subscription_hash
+
+    # location_hash is a short 4-char consistent hash of the longer subscription id.
+    # This is useful because azure storage account names are not allowed special characters and are limited to 24 chars.
+    # NOTE: be careful to not change this! or else state path will change
+    def location_hash
+      Digest::SHA1.hexdigest(location)[0..3]
+    end
+    alias_method :region_hash, :location_hash
+
+    def app_hash
+      Digest::SHA1.hexdigest(ENV['TS_APP'])[0..3] if ENV['TS_APP']
+    end
+
+    def env_hash
+      Digest::SHA1.hexdigest(ENV['TS_ENV'])[0..3] if ENV['TS_ENV']
+    end
   end
 end
