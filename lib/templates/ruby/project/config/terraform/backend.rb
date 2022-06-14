@@ -5,5 +5,5 @@ backend("azurerm",
   resource_group_name:  ":APP-:ENV-:LOCATION",
   storage_account_name: "ts:APP_HASH:SUBSCRIPTION_HASH:LOCATION_HASH:ENV",
   container_name:       "terraform-state",
-  key:                  ":TYPE_DIR/:APP/:ROLE/:MOD_NAME/:ENV/:EXTRA/:LOCATION/terraform.tfstate",
+  key:                  ":PROJECT/:TYPE_DIR/:APP/:ROLE/:MOD_NAME/:ENV/:EXTRA/:LOCATION/terraform.tfstate",
 )
