@@ -1,3 +1,6 @@
+# Backend Config Variables Docs
+# https://terraspace.cloud/docs/config/backend/variables/
+#
 # SUBSCRIPTION_HASH is a short 4-char consistent hash of the longer subscription id.
 # LOCATION_HASH is a short 4-char consistent hash of the longer location.
 # This is useful because azure storage account names are not allowed special characters and are limited to 24 chars.
