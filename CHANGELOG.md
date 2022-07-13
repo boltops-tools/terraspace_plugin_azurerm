@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project *loosely tries* to adhere to [Semantic Versioning](http://semver.org/).
 
+## [0.6.2] - 2022-07-13
+- [#18](https://github.com/boltops-tools/terraspace_plugin_azurerm/pull/18) add backend config variables docs comment
+
 ## [0.6.1] - 2022-06-14
 - [#17](https://github.com/boltops-tools/terraspace_plugin_azurerm/pull/17) backend.tf template project variable
 
