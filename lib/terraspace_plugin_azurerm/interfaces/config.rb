@@ -29,6 +29,7 @@ module TerraspacePluginAzurerm::Interfaces
       c.storage_account.sku.name = "Standard_LRS"
       c.storage_account.sku.tier = "Standard"
       c.storage_account.allow_blob_public_access = false # Azure default is true
+      c.storage_account.minimum_tls_version = "TLS1_2"
 
       # data protection management
       c.storage_account.configure_data_protection_for_existing = false
