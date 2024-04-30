@@ -44,6 +44,7 @@ class TerraspacePluginAzurerm::Interfaces::Backend
         },
         properties: {
           allowBlobPublicAccess: config.storage_account.allow_blob_public_access,
+          minimumTlsVersion: config.storage_account.minimum_tls_version,
         },
         kind: "StorageV2",
         tags: config.tags,
