@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project *loosely tries* to adhere to [Semantic Versioning](http://semver.org/).
 
+## [0.7.1] - 2024-05-01
+- [#22](https://github.com/boltops-tools/terraspace_plugin_azurerm/pull/22) fix: add minimum_tls_version to sa config
+
 ## [0.7.0] - 2022-07-20
 - [#19](https://github.com/boltops-tools/terraspace_plugin_azurerm/pull/19) update backend key generated default
 
